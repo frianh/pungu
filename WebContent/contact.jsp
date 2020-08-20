@@ -123,6 +123,31 @@
 					<div class="col-4">
 						<div class="row">
 							<div class="col-2">
+								<span><img alt="" src="image/address.png" style="height: 20px; width: 20px"></span>
+							</div>
+							<div class="col-10">
+								Alamat (Office dan Gudang)
+							</div>
+						</div>
+					</div>
+					<div class="col-8">
+						<p>
+							PT PUNGU JAYA ABADI (PJA CARGO)
+							<br>
+							Ruko Simpang Klender
+							<br>
+							Jl. I Gusti Ngurah Rai No. 44F, Klender
+							<br>
+							Jakarta Timur 13470 Indonesia
+							<br>
+							Telp. 021-2232 1520
+						</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-4">
+						<div class="row">
+							<div class="col-2">
 								<span><img alt="" src="image/phone.png" style="height: 20px; width: 20px"></span>
 							</div>
 							<div class="col-10">
@@ -150,8 +175,6 @@
 							<a class="text-body" style="text-decoration: none;" href="tel:081315508469">0813-1550-8469 Roy</a>
 							<br>
 							<a class="text-body" style="text-decoration: none;" href="tel:085882008864">0858-8200-8864 Charles</a>
-							<br>
-							<a class="text-body" style="text-decoration: none;" href="tel:081314048648">0813-1404-8648 John</a>
 						</p>
 					</div>
 				</div>
@@ -171,8 +194,6 @@
 							<a class="text-body" style="text-decoration: none;" href="https://wa.me/6281315508469?text=Hi%20admin,%20saya%20tertarik%20untuk%20mendapatkan%20informasi%20logistik%20anda" target="_blank">0813-1550-8469 Roy</a>
 							<br>
 							<a class="text-body" style="text-decoration: none;" href="https://wa.me/6285882008864?text=Hi%20admin,%20saya%20tertarik%20untuk%20mendapatkan%20informasi%20logistik%20anda" target="_blank">0858-8200-8864 Charles</a>
-							<br>
-							<a class="text-body" style="text-decoration: none;" href="https://wa.me/6281314048648?text=Hi%20admin,%20saya%20tertarik%20untuk%20mendapatkan%20informasi%20logistik%20anda" target="_blank">0813-1404-8648 John</a>
 						</p>
 					</div>
 				</div>
@@ -205,8 +226,6 @@
 						roy@pungujayaabadi.com
 						<br>
 						charles@pungujayaabadi.com
-						<br>
-						johns@pungujayaabadi.com
 						</p>
 					</div>
 				</div>
