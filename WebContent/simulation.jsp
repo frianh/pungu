@@ -194,7 +194,6 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="bootstrap/css/custom.css">
 	<title>Pungu Jaya Abadi | Simulasi</title>
 	<link rel="icon" href="image/logo.png">
 	<style type="text/css">
@@ -220,44 +219,8 @@
 	</style>
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-  		<a class="navbar-brand" href="#">
-    		<img src="image/logo.png" width="50" height="50" alt="">
-  		</a>
-  
-  		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-    		<span class="navbar-toggler-icon"></span>
-  		</button>
-
-  		<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-    		<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      			<li class="nav-item">
-        			<a class="nav-link" href="index.jsp">Home <span class="sr-only">(current)</span></a>
-      			</li>
-      			<li class="nav-item">
-        			<a class="nav-link" href="profile.jsp">Profil</a>
-      			</li>
-      			<li class="nav-item">
-        			<a class="nav-link" href="service.jsp">Service</a>
-      			</li>
-      			<li class="nav-item">
-        			<a class="nav-link" href="contact.jsp">Info Kontak</a>
-      			</li>
-      			<li class="nav-item">
-        			<a class="nav-link" href="simulation.jsp">Simulasi</a>
-      			</li>
-    		</ul>
-    		
-    		<form class="form-inline my-2 my-lg-0">
-      			<input class="form-control mr-sm-2" type="search" placeholder="Search">
-      			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    		</form>
-  		</div>
-	</nav>
-	
-	
-    <div class="container">
-      <br>
+<jsp:include page="/WEB-INF/nav.jsp"></jsp:include>
+	<div class="container-fluid" style="margin-top: 20px">
 	  <div class="h3 text-center">Simulasi</div>
 	  
 	  <label class="badge badge-success badge-pill">Kurs</label>
@@ -470,19 +433,7 @@
 		</div>
 	</div>
 	
-	<div id="footer">
- 		<div class="bg-light text-center text-black-50">
- 			<small>Pungu Jaya Abadi © 2020 Copyright</small>
-	 	</div>
- 	</div>
- 	
- 	<div class="fixed-bottom">
-		<a href="https://wa.me/6281315508469?text=Hi%20admin,%20saya%20tertarik%20untuk%20mendapatkan%20informasi%20logistik%20anda" target="_blank">
-			<span class="float-right">
-				<img alt="" src="image/wa.png" style="width: 50px">
-			</span>
-		</a>
-	</div>
+	<jsp:include page="/WEB-INF/footer.jsp"></jsp:include>
 </body>
 <script src="bootstrap/js/jquery.min.js"></script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
