@@ -1,15 +1,13 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
 	<title>Pungu Jaya Abadi | Info Kontak</title>
-	<link rel="icon" href="image/logo.png">
+	<link rel="icon" href="<%=request.getContextPath()%>/image/logo.png">
 </head>
 <body>
 	<jsp:include page="/WEB-INF/nav.jsp"></jsp:include>
-	<div class="container-fluid" style="margin-top: 20px">
+	<div class="container-fluid mt-3">
 		<jsp:include page="/WEB-INF/carousel.jsp"></jsp:include>
 		<div class="row">
 			<div class="col-sm-8">
@@ -18,7 +16,7 @@
 					<div class="col-4">
 						<div class="row">
 							<div class="col-2">
-								<span><img alt="" src="image/address.png" style="height: 20px; width: 20px"></span>
+								<span><img alt="" src="<%=request.getContextPath()%>/image/address.png" style="height: 20px; width: 20px"></span>
 							</div>
 							<div class="col-10">
 								Alamat
@@ -41,7 +39,7 @@
 					<div class="col-4">
 						<div class="row">
 							<div class="col-2">
-								<span><img alt="" src="image/address.png" style="height: 20px; width: 20px"></span>
+								<span><img alt="" src="<%=request.getContextPath()%>/image/address.png" style="height: 20px; width: 20px"></span>
 							</div>
 							<div class="col-10">
 								Alamat (Office dan Gudang)
@@ -66,7 +64,7 @@
 					<div class="col-4">
 						<div class="row">
 							<div class="col-2">
-								<span><img alt="" src="image/phone.png" style="height: 20px; width: 20px"></span>
+								<span><img alt="" src="<%=request.getContextPath()%>/image/phone.png" style="height: 20px; width: 20px"></span>
 							</div>
 							<div class="col-10">
 								Phone (Hunting)
@@ -81,7 +79,7 @@
 					<div class="col-4">
 						<div class="row">
 							<div class="col-2">
-								<span><img alt="" src="image/phone.png" style="height: 20px; width: 20px"></span>
+								<span><img alt="" src="<%=request.getContextPath()%>/image/phone.png" style="height: 20px; width: 20px"></span>
 							</div>
 							<div class="col-10">
 								Phone
@@ -100,7 +98,7 @@
 					<div class="col-4">
 						<div class="row">
 							<div class="col-2">
-								<span><img alt="" src="image/wa.png" style="height: 20px; width: 20px"></span>
+								<span><img alt="" src="<%=request.getContextPath()%>/image/wa.png" style="height: 20px; width: 20px"></span>
 							</div>
 							<div class="col-10">
 								WhatsApp
@@ -119,7 +117,7 @@
 					<div class="col-4">
 						<div class="row">
 							<div class="col-2">
-								<span><img alt="" src="image/email.png" style="height: 20px; width: 20px"></span>
+								<span><img alt="" src="<%=request.getContextPath()%>/image/email.png" style="height: 20px; width: 20px"></span>
 							</div>
 							<div class="col-10">
 								Email (Official)
@@ -132,7 +130,7 @@
 					<div class="col-4">
 						<div class="row">
 							<div class="col-2">
-								<span><img alt="" src="image/email.png" style="height: 20px; width: 20px"></span>
+								<span><img alt="" src="<%=request.getContextPath()%>/image/email.png" style="height: 20px; width: 20px"></span>
 							</div>
 							<div class="col-10">
 								Email
@@ -150,16 +148,25 @@
 				<div id="note"><small><em>*klik nomor telepon untuk akses lebih mudah</em></small></div>
 				
 				<br>
-				<form action="">
+				<c:if test="${result== 'success'}">
+		      		<div class="alert alert-success"><%=request.getAttribute("message")%></div>
+		    	</c:if>
+		    
+		    	<c:if test="${result== 'fail'}">
+		      		<div class="alert alert-danger"><%=request.getAttribute("message")%></div>
+		    	</c:if>
+		    	
+				<form action="<%=request.getContextPath()%>/contact/send-email" method="post">
 					<div class="form-group">
-    					<label>Kirimkan kami email :</label>
-    					<textarea class="form-control" id="" rows="5"></textarea>
-  					</div>
-  					<div class="row">
-  						<div class="col-8"></div>
-  						<div class="col-4">
-  							<button type="button" class="btn badge-pill btn-block btn-success">Kirim</button>
-  						</div>
+						<label class="h5">Kirimkan kami email</label>
+						<p>
+    					<label class="small">Pesan :</label>
+    					<textarea class="form-control" name="body_email" id="body_email" rows="5" required></textarea>
+    					<label class="small">Email :</label>
+    					<input class="form-control" style="max-width: 400px" type="email" name="sender_email" id="sender_email" required>
+  						<label class="small">Nama :</label>
+  						<input class="form-control" style="max-width: 400px" type="text" name="sender_name" id="sender_name" required>
+  						<button type="submit" class="btn badge-pill btn-block btn-success mt-3">Kirim</button>
   					</div>
 				</form>
 				<br>
@@ -172,12 +179,11 @@
 	</div>
 	
 	<jsp:include page="/WEB-INF/footer.jsp"></jsp:include>
+	
+	<form id="form_send_email" action="<%=request.getContextPath()%>/invoice/update" method="post">
+	  <input type="hidden" id="invoiceNo" name="invoiceNo">
+	  <input type="hidden" id="invoiceAction" name="invoiceAction">
+	  <input type="hidden" id="remarkHistory" name="remarkHistory">
+	</form>
 </body>
-<script src="bootstrap/js/jquery.min.js"></script>
-<script src="bootstrap/js/bootstrap.min.js"></script>
-<script>
-	$('.carousel').carousel({
-		interval: 5000
-		})
-</script>
 </html>

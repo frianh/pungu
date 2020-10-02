@@ -1,11 +1,16 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
-<head></head>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/bootstrap/css/bootstrap.min.css">
+</head>
 
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-  		<a class="navbar-brand" href="#">
-    		<img src="image/logo.png" width="50" height="50" alt="">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top small">
+  		<a class="navbar-brand" href="<%=request.getContextPath()%>">
+    		<img src="<%=request.getContextPath()%>/image/logo.png" width="50" height="50" alt="">
   		</a>
   
   		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -15,27 +20,47 @@
   		<div class="collapse navbar-collapse" id="navbarTogglerDemo02">
     		<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       			<li class="nav-item">
-        			<a class="nav-link" href="index.jsp">Home <span class="sr-only">(current)</span></a>
+        			<a class="nav-link border-bottom" href="<%=request.getContextPath()%>">Dashboard<span class="sr-only">(current)</span></a>
       			</li>
       			<li class="nav-item">
-        			<a class="nav-link" href="profile.jsp">Profil</a>
+        			<a class="nav-link border-bottom" href="<%=request.getContextPath()%>/profile">Profil</a>
       			</li>
       			<li class="nav-item">
-        			<a class="nav-link" href="service.jsp">Service</a>
+        			<a class="nav-link border-bottom" href="<%=request.getContextPath()%>/service">Service</a>
       			</li>
       			<li class="nav-item">
-        			<a class="nav-link" href="contact.jsp">Info Kontak</a>
+        			<a class="nav-link border-bottom" href="<%=request.getContextPath()%>/contact">Info Kontak</a>
       			</li>
       			<li class="nav-item">
-        			<a class="nav-link" href="simulation.jsp">Simulasi</a>
+        			<a class="nav-link border-bottom" href="<%=request.getContextPath()%>/simulation">Simulasi</a>
       			</li>
+      			<c:if test="${sessionScope.id == null}">
+      				<li class="nav-item">
+		        		<a class="nav-link border-bottom" href="<%=request.getContextPath()%>/login">Login</a>
+		      		</li>
+      			</c:if>
+      			<c:if test="${sessionScope.id != null}">
+	      			<li class="nav-item">
+	        			<a class="nav-link border-bottom" href="<%=request.getContextPath()%>/home">Home</a>
+	      			</li>
+      			</c:if>
     		</ul>
     		
-    		<form class="form-inline my-2 my-lg-0">
-      			<input class="form-control mr-sm-2" type="search" placeholder="Search">
-      			<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    		</form>
+    		<c:if test="${sessionScope.id != null}">
+    			<a href="<%=request.getContextPath()%>/users/my-profile" class="small nav-link text-primary">
+    			  <img alt="icon-user" src="<%=request.getContextPath()%>/icons/person-fill.svg">
+    			  ${sessionScope.name}
+    			</a>
+    			<a class="small nav-link text-danger" href="<%=request.getContextPath()%>/logout">Logout</a>
+    		</c:if>
   		</div>
 	</nav>
 </body>
+<script src="<%=request.getContextPath()%>/bootstrap/js/jquery.min.js"></script>
+<script src="<%=request.getContextPath()%>/bootstrap/js/bootstrap.min.js"></script>
+<script>
+	$('.carousel').carousel({
+		interval: 5000
+		})
+</script>
 </html>

@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
 	<title>Pungu Jaya Abadi | Service</title>
-	<link rel="icon" href="image/logo.png">
+	<link rel="icon" href="<%=request.getContextPath()%>/image/logo.png">
 </head>
 <body>
 	<jsp:include page="/WEB-INF/nav.jsp"></jsp:include>
-	<div class="container-fluid" style="margin-top: 20px">
+	<div class="container-fluid mt-3">
 		<jsp:include page="/WEB-INF/carousel.jsp"></jsp:include>
 		<div class="row">
 			<div class="col-sm-8">
@@ -56,11 +53,4 @@
 	
 	<jsp:include page="/WEB-INF/footer.jsp"></jsp:include>
 </body>
-<script src="bootstrap/js/jquery.min.js"></script>
-<script src="bootstrap/js/bootstrap.min.js"></script>
-<script>
-	$('.carousel').carousel({
-		interval: 5000
-		})
-</script>
 </html>

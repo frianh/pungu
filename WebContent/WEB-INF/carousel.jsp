@@ -12,7 +12,7 @@
   		
   		<div class="carousel-inner">
     		<div class="carousel-item active">
-      			<img class="d-block w-100" src="image/master1.jpg" alt="First slide" style="height: 400px">
+      			<img class="d-block w-100" src="<%=request.getContextPath()%>/image/master1.jpg" alt="First slide" style="height: 400px">
   				<div class="carousel-caption text-right d-none d-md-block">
     				<h4>Pungu Jaya Abadi</h4>
     				<p>Murah Cepat Aman</p>
@@ -20,14 +20,14 @@
   				</div>
     		</div>
     		<div class="carousel-item">
-  				<img class="d-block w-100" src="image/master2.jpeg" alt="Second slide" style="height: 400px">
+  				<img class="d-block w-100" src="<%=request.getContextPath()%>/image/master2.jpeg" alt="Second slide" style="height: 400px">
   				<div class="carousel-caption text-right d-none d-md-block">
     				<h4>Pungu Jaya Abadi</h4>
     				<p>Mudah menghubungi kami</p>
   				</div>
 			</div>
     		<div class="carousel-item">
-  				<img class="d-block w-100" src="image/master3.jpeg" alt="Third slide" style="height: 400px">
+  				<img class="d-block w-100" src="<%=request.getContextPath()%>/image/master3.jpeg" alt="Third slide" style="height: 400px">
   				<div class="carousel-caption text-right d-none d-md-block">
     				<h4>Pungu Jaya Abadi</h4>
     				<p>Berpengalaman Dalam Pengiriman Barang</p>

@@ -1,16 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
 	<title>Pungu Jaya Abadi</title>
-	<link rel="icon" href="image/logo.png">
+	<link rel="icon" href="<%=request.getContextPath()%>/image/logo.png">
 </head>
 
 <body>
 	<jsp:include page="/WEB-INF/nav.jsp"></jsp:include>
-	<div class="container-fluid" style="margin-top: 20px">
+	<div class="container-fluid mt-3">
 		<jsp:include page="/WEB-INF/carousel.jsp"></jsp:include>
 		<div>
 			<h3 class="text-center bg-light">Selamat Datang di Pungu Jaya Abadi</h3>
@@ -21,47 +18,45 @@
 			</p>
 		</div>
 		
-		<br>
-		<div id="service">
+		<div id="service" class="mt-1">
 			<h3 class="text-center border-bottom bg-light">Service</h3>
 			<div class="card-deck">
 			  <div class="card">
 			    <img class="card-img-top" src="image/service1.jpg" alt="Card image cap">
 			    <div class="card-body">
-			      <h5 class="card-title"><a href="service.jsp#import-custome-clearence">Import Custome Clearence</a></h5>
+			      <h5 class="card-title"><a href="service">Import Custome Clearence</a></h5>
 			      <p class="card-text">Proses Pengurusan Import yang panjang dan  berliku kini begitu mudah dengan mempercayakannya kepada PUNGU JAYA. Kami siap memberikan solusi untuk segala kebutuhan pengurusan barang import Anda mulai dari A sampai Z (All in One). Baik itu port to port, port to door, h...</p>
-			      <a href="service.jsp#import-custome-clearence">Read More</a>
+			      <a href="service">Read More</a>
 			    </div>
 			  </div>
 			  <div class="card">
 			    <img class="card-img-top" src="image/service2.jpg" alt="Card image cap">
 			    <div class="card-body">
-			      <h5 class="card-title"><a href="service.jsp#import-door-to-door">Import (Door To Door)</a></h5>
+			      <h5 class="card-title"><a href="service">Import (Door To Door)</a></h5>
 			      <p class="card-text">PUNGU JAYA memberikan pelayanan terbaik untuk import mesin, alat berat dan berukuran super besar. Kami memiliki pengalaman menangani import barang / alat berat dan barang berukuran besar serta project cargo ke berbagai provinsi di Indonesia. Barang / alat berat t...</p>
-			      <a href="service.jsp#import-door-to-door">Read More</a>
+			      <a href="service">Read More</a>
 			    </div>
 			  </div>
 			  <div class="card">
 			    <img class="card-img-top" src="image/service3.jpg" alt="Card image cap">
 			    <div class="card-body">
-			      <h5 class="card-title"><a href="service.jsp#handling-import-undername">Handling Import Undername</a></h5>
+			      <h5 class="card-title"><a href="service">Handling Import Undername</a></h5>
 			      <p class="card-text">PUNGU JAYA sebagai jasa import barang yang berkantor pusat di Bekasi dan jasa forwarder yang melayani cargo import door to door dari seluruh negara di dunia untuk di kirim ke seluruh kota di Indonesia. Pelayanan Cargo Import PUNGU JAYA dimu...</p>
-			      <a href="service.jsp#handling-import-undername">Read More</a>
+			      <a href="service">Read More</a>
 			    </div>
 			  </div>
 			  <div class="card">
 			    <img class="card-img-top" src="image/service4.jpg" alt="Card image cap">
 			    <div class="card-body">
-			      <h5 class="card-title"><a href="service.jsp#trucking">Trucking</a></h5>
+			      <h5 class="card-title"><a href="service">Trucking</a></h5>
 			      <p class="card-text">PUNGU JAYA berpengalaman melayani pengurusan ekspor produk Anda dari seluruh propinsi di Indonesia ke seluruh negara di dunia. Pengurusan Ekspor kami terintegrasi mulai dari pengambilan produk di lokasi sampai dengan proses pengiriman barang sampai alamat tujuan eksp...</p>
-			      <a href="service.jsp#trucking">Read More</a>
+			      <a href="service">Read More</a>
 			    </div>
 			  </div>
 			</div>
 		</div>
 		
-		<br>
-		<div class="">
+		<div class="mt-1">
 			<h4 class="text-center bg-light">Kenapa Pungu Jaya Abadi?</h4>
 			<p class="text-center">Kami berkomitmen menjadi partner terpercaya di seluruh Indonesia. </p>
 	
@@ -99,24 +94,22 @@
 	 		</div>
  		</div>
  		
- 		<br>
- 		<div id="note" style="background-image: url('image/blur.jpeg');">
+ 		<div class="mt-1" id="note" style="background-image: url('image/blur.jpeg');">
  			<h5 class="text-center text-white">Barang Impor / Ekspor Anda membutuhkan penanganan yang cepat, efisien dan terjamin keamanannya. Silahkan kunjungi <a href="contact.jsp">INFO KONTAK</a> kami atau untuk akses cepat silahkan klik ikon WHATSAPP</h5>
  		</div>
  		
- 		<br>
- 		<div class="row">
+ 		<div class="row mt-1">
 			<div class="col-sm-4 text-center">
 				<ul class="list-group" style="list-style-type: none;">
 					<li class=""><h6>Pungu Jaya</h6></li>
 					<li>
-						<a class="text-black-50" href="profile.jsp" style="text-decoration: none;"><small>Tentang Kami</small></a>
+						<a class="text-black-50" href="<%=request.getContextPath()%>/profile" style="text-decoration: none;"><small>Tentang Kami</small></a>
 					</li>
 					<li class="text-black-50" >
-						<a class="text-black-50" href="service.jsp" style="text-decoration: none;"><small>Service</small></a>
+						<a class="text-black-50" href="<%=request.getContextPath()%>/service" style="text-decoration: none;"><small>Service</small></a>
 					</li>
 					<li class="text-black-50" >
-						<a class="text-black-50" href="contact.jsp" style="text-decoration: none;"><small>Info Kontak</small></a>
+						<a class="text-black-50" href="<%=request.getContextPath()%>/contact" style="text-decoration: none;"><small>Info Kontak</small></a>
 					</li>
 				</ul>
 			</div>
@@ -139,11 +132,4 @@
 	</div>
 	<jsp:include page="/WEB-INF/footer.jsp"></jsp:include>
 </body>
-<script src="bootstrap/js/jquery.min.js"></script>
-<script src="bootstrap/js/bootstrap.min.js"></script>
-<script>
-	$('.carousel').carousel({
-		interval: 5000
-		})
-</script>
 </html>
