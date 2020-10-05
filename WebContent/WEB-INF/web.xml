@@ -117,6 +117,8 @@
       <url-pattern>/invoice/review</url-pattern>
       <url-pattern>/invoice/detail</url-pattern>
       <url-pattern>/invoice/update</url-pattern>
+      <url-pattern>/invoice/update-form</url-pattern>
+      <url-pattern>/invoice/edit</url-pattern>
     </servlet-mapping>
     
     <servlet>

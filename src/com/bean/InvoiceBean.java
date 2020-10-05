@@ -23,6 +23,24 @@ public class InvoiceBean {
 	private String currentStatus;
 	private String act;
 	private String remarkHistory;
+	private Date lastUpdate;
+	private String updateBy;
+	
+	public String getUpdateBy() {
+		return updateBy;
+	}
+	
+	public void setUpdateBy(String updateBy) {
+		this.updateBy = updateBy;
+	}
+	
+	public Date getLastUpdate() {
+		return lastUpdate;
+	}
+	
+	public void setLastUpdate(Date lastUpdate) {
+		this.lastUpdate = lastUpdate;
+	}
 	
 	public String getDownPaymentStatus() {
 		return downPaymentStatus;

@@ -7,6 +7,7 @@ import java.text.DecimalFormatSymbols;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Random;
 
 import javax.servlet.ServletException;
@@ -60,6 +61,12 @@ public class Invoice extends HttpServlet{
 			case "/invoice/update":;
 				updateInvoice(request, response);
 				break;
+			case "/invoice/update-form":;
+				updateForm(request, response);
+				break;
+			case "/invoice/edit":;
+				edit(request, response);
+				break;
 			default:
 				listInvoice(request, response);
 				break;
@@ -71,7 +78,53 @@ public class Invoice extends HttpServlet{
 		}
 	}
 	
+	private void updateForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try {
+			String id = (String) request.getSession().getAttribute("id");
+			String titles = request.getParameter("arrTitle");
+			
+			ArrayList<String> arrTitle = new ArrayList<String>();
+			for(String title: titles.split(",")) {
+				arrTitle.add(title);
+			}
+			
+			InvoiceDao invoiceDao = new InvoiceDao();
+			invoiceDao.updateTitleList(id, arrTitle);
+			
+			ArrayList<InvoiceBean> titleList = invoiceDao.getInvoiceTitle();
+			request.setAttribute("titleList", titleList);
+			request.setAttribute("type", "add");
+			request.setAttribute("result", "success");
+			request.setAttribute("message", "Title berhasil diperbarui.");
+			request.getRequestDispatcher("/WEB-INF/invoice.jsp").forward(request, response);
+		} catch (Exception e) {
+			request.setAttribute("type", "add");
+			request.setAttribute("result", "fail");
+			request.setAttribute("message", "Maaf terjadi kesalahan, title gagal diperbarui.");
+			request.getRequestDispatcher("/WEB-INF/invoice.jsp").forward(request, response);
+		}
+	}
+	
+	private void edit(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		InvoiceDao invoiceDao = new InvoiceDao();
+		ArrayList<InvoiceBean> titleList = invoiceDao.getInvoiceTitle();
+		
+		InvoiceBean invoiceBean = invoiceDao.getLastUpdate();
+		
+		Date lastUpdate = invoiceBean.getLastUpdate();
+		String updateBy = invoiceBean.getUpdateBy();
+		
+		request.setAttribute("lastUpdate", lastUpdate);
+		request.setAttribute("updateBy", updateBy);
+		request.setAttribute("titleList", titleList);
+		request.setAttribute("type", "edit");
+		request.getRequestDispatcher("/WEB-INF/invoice.jsp").forward(request, response);
+	}
+	
 	private void showFormAddNewInvoice(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		InvoiceDao invoiceDao = new InvoiceDao();
+		ArrayList<InvoiceBean> titleList = invoiceDao.getInvoiceTitle();
+		request.setAttribute("titleList", titleList);
 		request.setAttribute("type", "add");
 		request.getRequestDispatcher("/WEB-INF/invoice.jsp").forward(request, response);
 	}

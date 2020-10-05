@@ -3,6 +3,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <script type="text/javascript">
+	function getDataTitle() {
+		var table = document.getElementById("tbl_title");
+		rows = table.rows.length;
+		var arrTitle = [];
+		
+		var j = 0;
+		for (var i = 2; i<rows; i++) {
+		   row = table.rows[i];
+		   cell = row.cells[0].childNodes[0].value;
+		   arrTitle[j] = cell.replace(/,/g, '');
+		   j++;
+		}
+		
+		document.getElementById("arrTitle").value = arrTitle;
+		
+		if (confirm('Save ?')) {
+			document.getElementById("invoice_update").submit();
+		}else{
+			return;
+		}
+	}
+
+	function deleteRow(btn) {
+		  var row = btn.parentNode.parentNode;
+		  row.parentNode.removeChild(row);
+	}
+
+	function addRow(tableID) {
+		var table = document.getElementById(tableID);
+	
+		var rowCount = table.rows.length;
+		var row = table.insertRow(rowCount);
+	
+		var cell1 = row.insertCell(0);
+		var element1 = document.createElement("textarea");
+		element1.setAttribute('class','form-control');
+		element1.setAttribute('rows','3');
+		element1.setAttribute('cols','');
+		cell1.appendChild(element1);
+		
+		var cell2 = row.insertCell(1);
+		var element2 = document.createElement("input");
+		element2.type = "button";
+		element2.value = "delete";
+		element2.setAttribute('onclick','deleteRow(this)');
+		element2.setAttribute('class','btn-danger');
+		cell2.appendChild(element2);
+	}
+
 	function onlyNumber(evt) {
 	  	var charCode = (evt.which) ? evt.which : event.keyCode
 	  	if (charCode > 31 && (charCode < 48 || charCode > 57)){
@@ -173,8 +222,8 @@
 			return;
 		}
 		
-		if(create_title.trim()==""){
-			alert("Title belum di isi.");
+		if(create_title.trim()=="pilih"){
+			alert("Title belum di pilih.");
 			document.getElementById("create_title").focus();
 			return;
 		}
@@ -362,6 +411,37 @@
 <body style="padding-bottom: 30px">
 	<jsp:include page="/WEB-INF/nav.jsp"></jsp:include>
 	<div class="container-fluid mt-3">
+	  <c:if test="${type=='edit'}">
+	    <label class="badge badge-secondary badge-pill">Info Update Terakhir</label>
+	  	<div class="border-bottom border-secondary"></div>
+	  		
+		<div><label class="small text-muted">Last update : <%= request.getAttribute("lastUpdate") %></label></div>
+		<div><label class="small text-muted">By : <%= request.getAttribute("updateBy") %></label></div>
+	  	
+		<table id="tbl_title">
+			<tr>
+			   	<td></td>
+			   	<th><input type="hidden"></th>
+			 </tr>
+			 <tr>
+			    <th>
+			    	<label class="badge badge-secondary badge-pill mt-4">Daftar Title</label>
+ 					<div class="border-bottom border-secondary"></div>
+			    </th>
+			    <th></th>
+			 </tr>
+			 <c:forEach var="invoiceBean" items="${titleList}">		  
+			 	<tr>
+			 		<td><textarea class="form-control" rows="3" cols="">${invoiceBean.getTitle()}</textarea></td>
+ 					<td><input class="btn-danger" type="button" value="delete" onclick="deleteRow(this)"></td>
+				</tr>
+			 </c:forEach>
+		</table>
+				
+		<input class="btn-success mt-2" type="button" onclick="addRow('tbl_title')" value="Add" />
+		<input class="btn-success" type="button" value="Submit" onclick="getDataTitle()"/>
+	  </c:if>
+	  
 	  <c:if test="${type=='detail'}">
 	    <button onclick="window.print();" class="small" style="position: fixed;bottom: 0px; right: 20px;">
 	    	<img alt="" src="<%=request.getContextPath() %>/icons/printer.svg">
@@ -651,6 +731,22 @@
 	  </c:if>
 	  
 	  <c:if test="${type=='add'}">
+	  	<c:if test="${result== 'success'}">
+	      <c:if test="${message!= null}">
+	      	<div class="alert alert-success">
+	      	  <label class="text-capitalize"><%=request.getAttribute("message")%></label>
+	        </div>
+	      </c:if>
+	  	</c:if>
+	  	
+	  	<c:if test="${result== 'fail'}">
+	      <c:if test="${message!= null}">
+	      	<div class="alert alert-danger">
+	      	  <label class="text-capitalize"><%=request.getAttribute("message")%></label>
+	        </div>
+	      </c:if>
+	  	</c:if>
+	  	
 	  	<label class="badge badge-secondary badge-pill">Create Invoice</label>
 	  	<div class="border-bottom border-secondary"></div>
 			<div id="add_new_invoice">
@@ -668,7 +764,15 @@
 				  <tr>
 				    <th>Title</th>
 				    <td>
-				      <textarea class="form-control" rows="3" cols="" id="create_title" placeholder="Title" required></textarea>
+				      <select id="create_title">
+				      	<option>pilih</option>
+				      	<c:forEach var="invoiceBean" items="${titleList}">
+			        	  <option>${invoiceBean.getTitle()}</option>
+			        	</c:forEach>
+				      </select>
+				    </td>
+				    <td>
+				      <a class="btn text-dark" href="<%=request.getContextPath()%>/invoice/edit">Edit</a>
 				    </td>
 				  </tr>
 				  <tr>
@@ -921,6 +1025,10 @@
 	  <form id="form_filter_by_invoice" action="<%=request.getContextPath()%>/invoice" method="get">
 	    <input type="hidden" id="hidden_invoice_no_filter" name="hidden_invoice_no_filter">
 	  </form>
+	  
+	  <form id="invoice_update" action="<%=request.getContextPath()%>/invoice/update-form" method="post">
+		<input type="hidden" id="arrTitle" name="arrTitle">
+	</form>
 	</div>
 </body>
 </html>

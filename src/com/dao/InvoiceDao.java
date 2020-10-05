@@ -224,4 +224,78 @@ public class InvoiceDao {
 			// TODO: handle exception
 		}
 	}
+	
+	public ArrayList<InvoiceBean> getInvoiceTitle(){
+		ArrayList<InvoiceBean> invoiceTitle = new ArrayList<InvoiceBean>();
+		
+		Connection con = null;
+		Statement statement = null;
+		ResultSet resultSet = null;
+		
+		try {
+			con = DBConnection.createConnection();
+			statement = con.createStatement();
+			String query = "SELECT * FROM tbl_invoice_title";
+			resultSet = statement.executeQuery(query);
+			while(resultSet.next()){
+				InvoiceBean invoiceBean = new InvoiceBean();
+				invoiceBean.setTitle(resultSet.getString("title"));
+				invoiceTitle.add(invoiceBean);
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return invoiceTitle;
+	}
+	
+	public InvoiceBean getLastUpdate() {
+		InvoiceBean invoiceBean = new InvoiceBean();
+		
+		Connection con = null;
+		Statement statement = null;
+		ResultSet resultSet = null;
+		
+		try {
+			con = DBConnection.createConnection();
+			statement = con.createStatement();
+			String query = "SELECT lastUpdate, updateBy FROM tbl_invoice_title LIMIT 1";
+			resultSet = statement.executeQuery(query);
+			while(resultSet.next()){
+				invoiceBean.setLastUpdate(resultSet.getTimestamp("lastUpdate"));
+				invoiceBean.setUpdateBy(resultSet.getString("updateBy"));
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return invoiceBean;
+	}
+	
+	public void updateTitleList(String updateBy, ArrayList<String> titleList) {
+		try {
+			con = DBConnection.createConnection();
+			statement = con.createStatement();
+			statement.executeQuery("TRUNCATE tbl_invoice_title");
+		
+			//multiple insert
+			String currentValue = "";
+			String temp1 = "";
+			for(int i=0; i<titleList.size(); i++) {
+				currentValue = "('" +titleList.get(i) +"'),";
+				if(!temp1.contains(currentValue)) {
+					currentValue = temp1 +currentValue;
+					temp1 = currentValue;	
+				}
+			}
+			
+			String query = "INSERT INTO tbl_invoice_title (title) VALUES" +temp1.substring(0,temp1.length() - 1);
+			statement.executeUpdate(query);
+			
+			query = "UPDATE tbl_invoice_title SET lastUpdate=now(), updateBy='" +updateBy +"'";
+			statement.executeUpdate(query);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }
