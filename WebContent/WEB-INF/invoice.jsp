@@ -246,7 +246,7 @@
 			return;
 		}
 		
-		if(create_qty.trim()<=1){
+		if(create_qty.trim()<1){
 			alert("Quantity setidaknya 1.");
 			document.getElementById("create_qty").focus();
 			return;
