@@ -134,6 +134,7 @@ public class Invoice extends HttpServlet{
 		request.setAttribute("create_address", request.getParameter("hidden_create_address"));
 		request.setAttribute("create_title", request.getParameter("hidden_create_title"));
 		request.setAttribute("create_description", request.getParameter("hidden_create_description"));
+		request.setAttribute("create_original_link", request.getParameter("hidden_create_original_link").trim());
 		request.setAttribute("create_rate", request.getParameter("hidden_create_rate"));
 		request.setAttribute("create_qty", request.getParameter("hidden_create_qty"));
 		request.setAttribute("create_remark", request.getParameter("hidden_create_remark"));
@@ -160,6 +161,7 @@ public class Invoice extends HttpServlet{
 			invoiceBean.setAddress(request.getParameter("hidden_rev_create_address"));
 			invoiceBean.setTitle(request.getParameter("hidden_rev_create_title"));
 			invoiceBean.setDescription(request.getParameter("hidden_rev_create_description"));
+			invoiceBean.setOriginalLink(request.getParameter("hidden_rev_original_link"));
 			invoiceBean.setQty(Integer.valueOf(request.getParameter("hidden_rev_create_qty")));
 			invoiceBean.setRemark(request.getParameter("hidden_rev_create_remark"));
 			invoiceBean.setRate(BigDecimal.valueOf(Double.valueOf(request.getParameter("hidden_rev_create_rate").replace(",", ""))));
@@ -267,6 +269,7 @@ public class Invoice extends HttpServlet{
 			request.setAttribute("address", invoiceBean.getAddress());
 			request.setAttribute("title", invoiceBean.getTitle());
 			request.setAttribute("description", invoiceBean.getDescription());
+			request.setAttribute("original_link", invoiceBean.getOriginalLink());
 			request.setAttribute("qty", invoiceBean.getQty());
 			request.setAttribute("remark", invoiceBean.getRemark());
 			request.setAttribute("rate", df.format(invoiceBean.getRate()));
@@ -337,6 +340,7 @@ public class Invoice extends HttpServlet{
 			request.setAttribute("address", invoiceBean.getAddress());
 			request.setAttribute("title", invoiceBean.getTitle());
 			request.setAttribute("description", invoiceBean.getDescription());
+			request.setAttribute("original_link", invoiceBean.getOriginalLink());
 			request.setAttribute("qty", invoiceBean.getQty());
 			request.setAttribute("remark", invoiceBean.getRemark());
 			request.setAttribute("rate", df.format(invoiceBean.getRate()));

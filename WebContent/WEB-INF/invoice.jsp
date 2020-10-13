@@ -201,6 +201,7 @@
 		var create_address = document.getElementById("create_address").value;
 		var create_title = document.getElementById("create_title").value;
 		var create_description = document.getElementById("create_description").value;
+		var create_original_link = document.getElementById("create_original_link").value;
 		var create_rate = document.getElementById("create_rate").value;
 		var create_qty = document.getElementById("create_qty").value;
 		var create_remark = document.getElementById("create_remark").value;
@@ -232,6 +233,14 @@
 			alert("Deskripsi belum di isi.");
 			document.getElementById("create_description").focus();
 			return;
+		}
+		
+		if(create_original_link.trim()!=""){
+			if(create_original_link.toLowerCase().trim().indexOf("http")===-1){
+				alert("Silahkan isi link yang valid.");
+				document.getElementById("create_original_link").focus();
+				return;
+			}	
 		}
 		
 		if(create_rate.trim()==""){
@@ -276,6 +285,7 @@
 		document.getElementById("hidden_create_address").value = create_address;
 		document.getElementById("hidden_create_title").value = create_title;
 		document.getElementById("hidden_create_description").value = create_description;
+		document.getElementById("hidden_create_original_link").value = create_original_link;
 		document.getElementById("hidden_create_rate").value = create_rate;
 		document.getElementById("hidden_create_qty").value = create_qty;
 		document.getElementById("hidden_create_remark").value = create_remark;
@@ -292,6 +302,7 @@
 		var rev_create_address = document.getElementById("rev_create_address").value;
 		var rev_create_title = document.getElementById("rev_create_title").value;
 		var rev_create_description = document.getElementById("rev_create_description").value;
+		var rev_original_link = document.getElementById("rev_create_original_link").value;
 		var rev_create_rate = document.getElementById("rev_create_rate").value;
 		var rev_create_qty = document.getElementById("rev_create_qty").value;
 		var rev_create_remark = document.getElementById("rev_create_remark").value;
@@ -306,6 +317,7 @@
 		document.getElementById("hidden_rev_create_address").value = rev_create_address;
 		document.getElementById("hidden_rev_create_title").value = rev_create_title;
 		document.getElementById("hidden_rev_create_description").value = rev_create_description;
+		document.getElementById("hidden_rev_original_link").value = rev_original_link;
 		document.getElementById("hidden_rev_create_rate").value = rev_create_rate;
 		document.getElementById("hidden_rev_create_qty").value = rev_create_qty;
 		document.getElementById("hidden_rev_create_remark").value = rev_create_remark;
@@ -533,7 +545,25 @@
 		    </tr>
 		    <tr>
 		      <td>
-		        <%= request.getAttribute("description") %>
+		      <c:if test="${original_link == '' }">
+		      		<%= request.getAttribute("description") %>
+		      	</c:if>
+		      	
+		      	<c:if test="${original_link != '' }">
+		      		<a href="<%= request.getAttribute("original_link") %>">
+		      			<%= request.getAttribute("description") %>
+		      		</a>
+		      	</c:if>
+		      	
+		      	
+		        <c:if test="${create_original_link != '' } %>">
+			        <a href="<%= request.getAttribute("create_original_link") %>">
+			      		<%= request.getAttribute("description") %>
+			      	</a>
+		        </c:if>
+		      	<c:if test="${create_original_link == '' } %>">
+			      	<%= request.getAttribute("description") %>
+		        </c:if>
 		      </td>
 		      <td>
 		        <%= request.getAttribute("qty") %>
@@ -780,6 +810,10 @@
 				    <td><textarea class="form-control" rows="3" cols="" id="create_description" placeholder="Deskripsi" required></textarea></td>
 				  </tr>
 				  <tr>
+				    <th>Original Link</th>
+				    <td><textarea class="form-control" rows="3" cols="" id="create_original_link" placeholder="Original Link"></textarea></td>
+				  </tr>
+				  <tr>
 				    <th>Rate (Rp)</th>
 				    <td><input onkeyup="sum1(); sum5(); sum7();" onKeyPress="validate()" oninput="separator(this)" id="create_rate" placeholder="Rate" required></td>
 				  </tr>
@@ -876,8 +910,18 @@
 		    </tr>
 		    <tr>
 		      <td>
-		        <%= request.getAttribute("create_description") %>
+		      	<c:if test="${create_original_link == '' }">
+		      		<%= request.getAttribute("create_description") %>
+		      	</c:if>
+		      	
+		      	<c:if test="${create_original_link != '' }">
+		      		<a href="<%= request.getAttribute("create_original_link") %>">
+		      			<%= request.getAttribute("create_description") %>
+		      		</a>
+		      	</c:if>
+		      	
 		        <input id="rev_create_description" type="hidden" value="<%= request.getAttribute("create_description") %>">
+		        <input id="rev_create_original_link" type="hidden" value="<%= request.getAttribute("create_original_link") %>">
 		      </td>
 		      <td>
 		        <%= request.getAttribute("create_qty") %>
@@ -985,6 +1029,7 @@
 		<input type="hidden" id="hidden_create_address" name="hidden_create_address">
 		<input type="hidden" id="hidden_create_title" name="hidden_create_title">
 		<input type="hidden" id="hidden_create_description" name="hidden_create_description">
+		<input type="hidden" id="hidden_create_original_link" name="hidden_create_original_link">
 		<input type="hidden" id="hidden_create_rate" name="hidden_create_rate">
 		<input type="hidden" id="hidden_create_qty" name="hidden_create_qty">
 		<input type="hidden" id="hidden_create_remark" name="hidden_create_remark">
@@ -1000,6 +1045,7 @@
 		<input type="hidden" id="hidden_rev_create_address" name="hidden_rev_create_address">
 		<input type="hidden" id="hidden_rev_create_title" name="hidden_rev_create_title">
 		<input type="hidden" id="hidden_rev_create_description" name="hidden_rev_create_description">
+		<input type="hidden" id="hidden_rev_original_link" name="hidden_rev_original_link">
 		<input type="hidden" id="hidden_rev_create_rate" name="hidden_rev_create_rate">
 		<input type="hidden" id="hidden_rev_create_qty" name="hidden_rev_create_qty">
 		<input type="hidden" id="hidden_rev_create_remark" name="hidden_rev_create_remark">

@@ -19,10 +19,10 @@ public class InvoiceDao {
 		try {
 			con = DBConnection.createConnection();
 			statement = con.createStatement();
-			String query = "INSERT INTO tbl_invoice(name, address, title, description,"
+			String query = "INSERT INTO tbl_invoice(name, address, title, description, originalLink,"
 					+"qty, remark, rate, total, discount, grandTotal, downPayment, remainingPayment, createBy, createDate, currentStatus, downPaymentStatus)"
 					+"VALUES('"+invoiceBean.getName() +"', '" +invoiceBean.getAddress() +"', '" +invoiceBean.getTitle() +"', '"
-					+invoiceBean.getDescription() +"', '" +invoiceBean.getQty() +"', '" +invoiceBean.getRemark() +"', '"
+					+invoiceBean.getDescription() +"', '" +invoiceBean.getOriginalLink() +"', '" +invoiceBean.getQty() +"', '" +invoiceBean.getRemark() +"', '"
 					+invoiceBean.getRate() +"', '" +invoiceBean.getTotal() +"', '" +invoiceBean.getDiscount() +"', '"
 					+invoiceBean.getGrandTotal() +"', '" +invoiceBean.getDownPayment() +"', '" +invoiceBean.getRemainingPayment() +"', '"
 					+createBy +"', now(), 'menunggu approval', 'unpaid')";
@@ -162,6 +162,7 @@ public class InvoiceDao {
 				invoiceBean.setAddress(resultSet.getString("address"));
 				invoiceBean.setTitle(resultSet.getString("title"));
 				invoiceBean.setDescription(resultSet.getString("description"));
+				invoiceBean.setOriginalLink(resultSet.getString("originalLink"));
 				invoiceBean.setQty(resultSet.getInt("qty"));
 				invoiceBean.setRemark(resultSet.getString("remark"));
 				invoiceBean.setRate(resultSet.getBigDecimal("rate"));

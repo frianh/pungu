@@ -9,6 +9,7 @@ public class InvoiceBean {
 	private String address;
 	private String title;
 	private String description;
+	private String originalLink;
 	private int qty;
 	private String remark;
 	private BigDecimal rate;
@@ -152,6 +153,14 @@ public class InvoiceBean {
 	
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public String getOriginalLink() {
+		return originalLink;
+	}
+	
+	public void setOriginalLink(String originalLink) {
+		this.originalLink = originalLink;
 	}
 	
 	public Date getCreateDate() {
