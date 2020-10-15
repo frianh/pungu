@@ -56,7 +56,7 @@ public class InvoiceDao {
 			resultSet = statement.executeQuery(query);
 			while(resultSet.next()){
 				InvoiceBean invoiceBean = new InvoiceBean();
-				invoiceBean.setInvoiceNumber(resultSet.getInt("invoiceNo"));
+				invoiceBean.setInvoiceNo(resultSet.getString("invoiceNo"));
 				invoiceBean.setName(resultSet.getString("name"));
 				invoiceBean.setDescription(resultSet.getString("description"));
 				invoiceBean.setGrandTotal(resultSet.getBigDecimal("grandTotal"));
@@ -101,7 +101,7 @@ public class InvoiceDao {
 			resultSet = statement.executeQuery(query);
 			while(resultSet.next()){
 				InvoiceBean invoiceBean = new InvoiceBean();
-				invoiceBean.setInvoiceNumber(resultSet.getInt("invoiceNo"));
+				invoiceBean.setInvoiceNo(resultSet.getString("invoiceNo"));
 				invoiceBean.setName(resultSet.getString("name"));
 				invoiceBean.setDescription(resultSet.getString("description"));
 				invoiceBean.setGrandTotal(resultSet.getBigDecimal("grandTotal"));
@@ -149,7 +149,7 @@ public class InvoiceDao {
 		Connection con = null;
 		Statement statement = null;
 		ResultSet resultSet = null;
-		
+				
 		try {
 			con = DBConnection.createConnection();
 			statement = con.createStatement();
@@ -157,7 +157,7 @@ public class InvoiceDao {
 			resultSet = statement.executeQuery(query);
 			
 			while (resultSet.next()) {
-				invoiceBean.setInvoiceNumber(resultSet.getInt("invoiceNo"));
+				invoiceBean.setInvoiceNo(resultSet.getString("invoiceNo"));
 				invoiceBean.setName(resultSet.getString("name"));
 				invoiceBean.setAddress(resultSet.getString("address"));
 				invoiceBean.setTitle(resultSet.getString("title"));

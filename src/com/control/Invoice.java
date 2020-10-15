@@ -9,6 +9,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
+import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -264,7 +265,7 @@ public class Invoice extends HttpServlet{
 			df.setDecimalFormatSymbols(dfs);
 			
 			InvoiceBean invoiceBean = invoiceDao.getInvoiceDetail(Integer.valueOf(invoiceNo));
-			request.setAttribute("invoice_number", invoiceBean.getInvoiceNumber());
+			request.setAttribute("invoice_number", invoiceBean.getInvoiceNo());
 			request.setAttribute("to", invoiceBean.getName());
 			request.setAttribute("address", invoiceBean.getAddress());
 			request.setAttribute("title", invoiceBean.getTitle());
@@ -280,7 +281,7 @@ public class Invoice extends HttpServlet{
 			request.setAttribute("dpStatus", invoiceBean.getDownPaymentStatus());
 			request.setAttribute("remaining_pay", df.format(invoiceBean.getRemainingPayment()));
 			request.setAttribute("create_by", invoiceBean.getCreateBy());
-			request.setAttribute("create_date", invoiceBean.getCreateDate());
+			request.setAttribute("create_date", invoiceBean.getCreateDate().toString().split(Pattern.quote("."))[0]);
 			request.setAttribute("current_status", invoiceBean.getCurrentStatus());
 			
 			ArrayList<InvoiceBean> invoiceHistory = invoiceDao.getInvoiceHistory(Integer.valueOf(invoiceNo));
@@ -335,7 +336,7 @@ public class Invoice extends HttpServlet{
 		
 		if(resultUpdate.equals("success")) {
 			InvoiceBean invoiceBean = invoiceDao.getInvoiceDetail(Integer.valueOf(invoiceNo));
-			request.setAttribute("invoice_number", invoiceBean.getInvoiceNumber());
+			request.setAttribute("invoice_number", invoiceBean.getInvoiceNo());
 			request.setAttribute("to", invoiceBean.getName());
 			request.setAttribute("address", invoiceBean.getAddress());
 			request.setAttribute("title", invoiceBean.getTitle());
@@ -351,7 +352,7 @@ public class Invoice extends HttpServlet{
 			request.setAttribute("dpStatus", invoiceBean.getDownPaymentStatus());
 			request.setAttribute("remaining_pay", df.format(invoiceBean.getRemainingPayment()));
 			request.setAttribute("create_by", invoiceBean.getCreateBy());
-			request.setAttribute("create_date", invoiceBean.getCreateDate());
+			request.setAttribute("create_date", invoiceBean.getCreateDate().toString().split(Pattern.quote("."))[0]);
 			request.setAttribute("current_status", invoiceBean.getCurrentStatus());
 			
 			ArrayList<InvoiceBean> invoiceHistory = invoiceDao.getInvoiceHistory(Integer.valueOf(invoiceNo));
@@ -364,7 +365,7 @@ public class Invoice extends HttpServlet{
 			request.getRequestDispatcher("/WEB-INF/invoice.jsp").forward(request, response);
 		}else {
 			InvoiceBean invoiceBean = invoiceDao.getInvoiceDetail(Integer.valueOf(invoiceNo));
-			request.setAttribute("invoice_number", invoiceBean.getInvoiceNumber());
+			request.setAttribute("invoice_number", invoiceBean.getInvoiceNo());
 			request.setAttribute("to", invoiceBean.getName());
 			request.setAttribute("address", invoiceBean.getAddress());
 			request.setAttribute("title", invoiceBean.getTitle());
@@ -379,7 +380,7 @@ public class Invoice extends HttpServlet{
 			request.setAttribute("dpStatus", invoiceBean.getDownPaymentStatus());
 			request.setAttribute("remaining_pay", df.format(invoiceBean.getRemainingPayment()));
 			request.setAttribute("create_by", invoiceBean.getCreateBy());
-			request.setAttribute("create_date", invoiceBean.getCreateDate());
+			request.setAttribute("create_date", invoiceBean.getCreateDate().toString().split(Pattern.quote("."))[0]);
 			request.setAttribute("current_status", invoiceBean.getCurrentStatus());
 			
 			ArrayList<InvoiceBean> invoiceHistory = invoiceDao.getInvoiceHistory(Integer.valueOf(invoiceNo));

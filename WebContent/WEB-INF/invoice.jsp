@@ -1,4 +1,5 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="display" uri="http://displaytag.sf.net" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -664,7 +665,9 @@
 		  	  <tr>
 		  	  	<td>${invoiceBean.getAct()}</td>
 		  	  	<td>${invoiceBean.getCreateBy()}</td>
-		  	  	<td>${invoiceBean.getCreateDate()}</td>
+		  	  	<td>
+		  	  	  <fmt:formatDate value="${invoiceBean.getCreateDate()}" pattern="yyyy-MM-dd HH:mm:ss" />
+		  	  	</td>
 		  	  	<td>${invoiceBean.getRemarkHistory()}</td>
 		  	  </tr>
 		  	</c:forEach>
@@ -743,7 +746,7 @@
 	  	<div id="list_invoice" class="mt-2">
 		  	<c:set var="rootContext" value="<%=request.getContextPath()%>"></c:set>
 		  	<display:table class="table table-responsive-sm" name="invoiceList" id="row" pagesize="10" requestURI="/invoice">
-		  		<display:column property="invoiceNumber" paramId="invoiceNo" title="Invoice" href="${rootContext}/invoice/detail?invoiceNo=${row.invoiceNumber}" class="btn-link"></display:column>
+		  		<display:column property="invoiceNo" paramId="invoiceNo" title="INV#" href="${rootContext}/invoice/detail?invoiceNo=${row.invoiceNo}" class="btn-link"></display:column>
 		  		<display:column property="name" title="Nama"></display:column>
 		  		<display:column property="description" title="Deskripsi"></display:column>
 		  		<display:column property="grandTotal" title="Grand Total" format="Rp. {0,number,0,000.00}"></display:column>

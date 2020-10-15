@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 public class InvoiceBean {
-	private int invoiceNumber;
+	private String invoiceNo;
 	private String name;
 	private String address;
 	private String title;
@@ -179,12 +179,12 @@ public class InvoiceBean {
 		this.title = title;
 	}
 	
-	public int getInvoiceNumber() {
-		return invoiceNumber;
+	public String getInvoiceNo() {
+		return invoiceNo;
 	}
 	
-	public void setInvoiceNumber(int invoiceNumber) {
-		this.invoiceNumber = invoiceNumber;
+	public void setInvoiceNo(String invoiceNo) {
+		this.invoiceNo = invoiceNo;
 	}
 	
 	public String getName() {
